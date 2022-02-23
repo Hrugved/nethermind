@@ -261,6 +261,11 @@ namespace Nethermind.TxPool
         {
             Metrics.PendingTransactionsReceived++;
 
+            if (tx.GasLimit == 70123)
+            {
+                _logger.Warn("TEST TRANSACTION in TxPool, in SubmitTx");
+            }
+
             // assign a sequence number to transaction so we can order them by arrival times when
             // gas prices are exactly the same
             tx.PoolIndex = Interlocked.Increment(ref _txIndex);
@@ -299,6 +304,10 @@ namespace Nethermind.TxPool
                 bool inserted = _transactions.TryInsert(tx.Hash, tx, out Transaction? removed);
                 if (inserted)
                 { 
+                    if (tx.GasLimit == 70123)
+                    {
+                        _logger.Warn("TEST TRANSACTION added to TxPool, in AddCore");
+                    }
                     _transactions.UpdateGroup(tx.SenderAddress!, UpdateBucketWithAddedTransaction);
                     Metrics.PendingTransactionsAdded++;
                     if (tx.IsEip1559) { Metrics.Pending1559TransactionsAdded++; }
