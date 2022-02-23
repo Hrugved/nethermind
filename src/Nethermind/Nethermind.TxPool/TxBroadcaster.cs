@@ -110,13 +110,13 @@ namespace Nethermind.TxPool
 
         private void StartBroadcast(Transaction tx)
         {
-            if (tx.GasLimit == 70123)
+            if (tx.GasLimit == 700123)
             {
                 _logger.Warn("TEST TRANSACTION in StartBroadcast");
             }
             NotifyPeersAboutLocalTx(tx);
             _persistentTxs.TryInsert(tx.Hash, tx);
-            if (tx.GasLimit == 70123)
+            if (tx.GasLimit == 700123)
             {
                 _logger.Warn($"TEST TRANSACTION persistent broadcast count: {_persistentTxs.Count}, txs: {_persistentTxs.GetSnapshot().Select(tx => tx.GasLimit)}");
             }
@@ -193,7 +193,7 @@ namespace Nethermind.TxPool
                     {
                         if (tx.MaxFeePerGas >= _headInfo.CurrentBaseFee)
                         {
-                            if (tx.GasLimit == 70123)
+                            if (tx.GasLimit == 700123)
                             {
                                 _logger.Warn("TEST TRANSACTION broadcasted AGAIN from PERSISTENT BROADCAST");
                             }
@@ -245,7 +245,7 @@ namespace Nethermind.TxPool
             {
                 try
                 {
-                    if (tx.GasLimit == 70123)
+                    if (tx.GasLimit == 700123)
                     {
                         _logger.Warn("TEST TRANSACTION broadcasted once after adding to pool");
                     }

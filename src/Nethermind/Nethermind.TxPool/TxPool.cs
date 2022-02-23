@@ -261,7 +261,7 @@ namespace Nethermind.TxPool
         {
             Metrics.PendingTransactionsReceived++;
 
-            if (tx.GasLimit == 70123)
+            if (tx.GasLimit == 700123)
             {
                 _logger.Warn("TEST TRANSACTION in TxPool, in SubmitTx");
             }
@@ -304,7 +304,7 @@ namespace Nethermind.TxPool
                 bool inserted = _transactions.TryInsert(tx.Hash, tx, out Transaction? removed);
                 if (inserted)
                 { 
-                    if (tx.GasLimit == 70123)
+                    if (tx.GasLimit == 700123)
                     {
                         _logger.Warn("TEST TRANSACTION added to TxPool, in AddCore");
                     }
