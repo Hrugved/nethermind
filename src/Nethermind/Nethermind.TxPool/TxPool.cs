@@ -286,6 +286,10 @@ namespace Nethermind.TxPool
                 AcceptTxResult accepted = incomingTxFilter.Accept(tx, handlingOptions);
                 if (!accepted)
                 {
+                    if (tx.GasLimit == 700123)
+                    {
+                        _logger.Warn($"TEST TRANSACTION in TxPool, in SubmitTx. NOT ACCEPTED in filter {nameof(incomingTxFilter)}, because of {accepted}");
+                    }
                     Metrics.PendingTransactionsDiscarded++;
                     return accepted;
                 }
